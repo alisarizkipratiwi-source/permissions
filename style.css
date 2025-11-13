@@ -1,72 +1,84 @@
-/* --- 1. BASE STYLING --- */
+/* --- 1. BASE STYLING & FONT --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #4285F4; /* Biru Google */
+    --secondary-color: #34A853; /* Hijau */
+    --accent-color: #FBBC05; /* Kuning */
+    --background-light: #f8f9fa;
+    --text-dark: #202124;
+    --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
 .container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 30px;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #2c3e50; /* Dark Blue */
-    border-bottom: 2px solid #ecf0f1;
-    padding-bottom: 10px;
+    color: var(--primary-color);
+    border-bottom: 3px solid #ECEFF1;
+    padding-bottom: 15px;
     margin-top: 0;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 
-/* --- 2. HOMEPAGE HEADER & CTA --- */
+/* --- 2. HEADER & NAVIGATION --- */
 
 .homepage-header {
-    background-color: #3f51b5; /* Primary Blue */
+    background-color: var(--primary-color);
     color: white;
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .homepage-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 5px;
+    font-size: 3em;
+    margin-bottom: 10px;
 }
 
 .cta-button {
     display: inline-block;
-    background-color: #ff9800; /* Orange CTA */
+    background-color: var(--secondary-color);
     color: white;
-    padding: 12px 25px;
+    padding: 12px 30px;
     text-decoration: none;
-    border-radius: 5px;
-    margin: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    border-radius: 8px;
+    margin: 15px 10px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
 }
 
 .cta-button:hover {
-    background-color: #e68900;
+    background-color: #2D9448;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 
-/* --- 3. FORM INPUTS (Login & Pengajuan) --- */
+/* --- 3. FORM INPUTS --- */
 
 label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #555;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
 }
 
 input[type="text"],
@@ -76,104 +88,121 @@ input[type="date"],
 select,
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
-    transition: border-color 0.3s;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, select:focus, textarea:focus {
-    border-color: #3f51b5;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
     outline: none;
 }
 
 button[type="submit"] {
-    background-color: #4CAF50; /* Green Submit */
+    background-color: var(--primary-color);
     color: white;
-    padding: 12px 20px;
+    padding: 14px 25px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #3C7AE8;
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
 }
 
 
-/* --- 4. DASHBOARD GURU & TABLE STYLING --- */
+/* --- 4. DASHBOARD & TABLE STYLING --- */
 
 #logoutBtn {
-    background-color: #d32f2f; /* Red Logout */
+    background-color: #EA4335; /* Merah Google */
     color: white;
-    padding: 8px 15px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
     float: right;
-    margin-top: -30px; /* Adjust position */
+    margin-top: -35px;
+    box-shadow: var(--shadow-subtle);
 }
 
 #izinTable {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    border-collapse: separate; /* Penting untuk radius border */
+    border-spacing: 0;
+    margin-top: 25px;
+    border-radius: 8px;
+    overflow: hidden; /* Memastikan sudut terpotong */
+    box-shadow: var(--shadow-subtle);
 }
 
 #izinTable th, #izinTable td {
-    border: 1px solid #ddd;
-    padding: 12px;
+    padding: 15px;
     text-align: left;
-    font-size: 0.9em;
+    border-bottom: 1px solid #eee;
 }
 
 #izinTable th {
-    background-color: #f2f2f2;
+    background-color: #E8F0FE; /* Biru sangat muda */
+    color: var(--primary-color);
     font-weight: 700;
-    color: #2c3e50;
 }
 
 /* Status Button Styling */
 .status-btn {
-    padding: 6px 10px;
-    font-size: 0.85em;
+    padding: 8px 12px;
+    font-size: 0.8em;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 20px; /* Lebih bulat */
     cursor: pointer;
     border: none;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-subtle);
 }
 
 .status-btn.approved { 
-    background-color: #28a745; /* Green */
+    background-color: var(--secondary-color);
     color: white; 
 }
 .status-btn.rejected { 
-    background-color: #dc3545; /* Red */
+    background-color: #EA4335;
     color: white; 
 }
 .status-btn:hover {
     opacity: 0.9;
+    transform: translateY(-1px);
 }
 
+/* Styling cell status */
+.status-menunggupersetujuan { color: var(--accent-color); font-weight: bold; }
+.status-disetujui { color: var(--secondary-color); font-weight: bold; }
+.status-ditolak { color: #EA4335; font-weight: bold; }
 
-/* --- 5. UTILITIES --- */
+
+/* --- 5. UTILITIES & ALERTS --- */
 
 .alert-success { 
-    background-color: #d4edda; 
-    color: #155724; 
+    background-color: #e6ffed; /* Hijau muda */
+    color: #1e8449; 
     padding: 15px; 
-    border: 1px solid #c3e6cb; 
-    border-radius: 4px; 
-    margin-bottom: 20px; 
+    border: 1px solid #b3e6c8; 
+    border-radius: 8px; 
+    margin-bottom: 25px; 
+    font-weight: 500;
 }
 
 #authMessage {
-    color: #d32f2f !important;
+    color: #EA4335 !important;
     font-weight: bold;
 }
