@@ -2,8 +2,8 @@
 // Logika untuk Pengajuan Izin Siswa (INSERT)
 
 // 1. GANTI DENGAN KUNCI PROYEK ANDA!
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL'; 
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co'; 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const izinForm = document.getElementById('izinForm');
