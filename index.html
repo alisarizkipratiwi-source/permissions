@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Izin Siswa - Sekolah ABC</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    
+    <header class="homepage-header">
+        <h1>Sistem Izin Siswa Sekolah ABC</h1>
+        <p>Gunakan formulir ini untuk mengajukan izin ketidakhadiran (Sakit, Keluarga, Dispensasi).</p>
+        <a href="#submission-form" class="cta-button">Ajukan Izin Sekarang</a>
+        <a href="login.html" class="cta-button">Login Guru/Admin</a> 
+    </header>
+
+    <main class="container">
+        
+        <section id="submission-form">
+            <h2>Formulir Pengajuan Izin</h2>
+            
+            <p id="formMessage" class="alert-success" style="display:none;"></p>
+
+            <form id="izinForm"> 
+                
+                <label for="namaSiswa">Nama Siswa Lengkap:</label>
+                <input type="text" id="namaSiswa" name="namaSiswa" required>
+
+                <label for="kelasSiswa">Kelas:</label>
+                <input type="text" id="kelasSiswa" name="kelasSiswa" placeholder="Contoh: X MIPA 1" required>
+
+                <label for="jenisIzin">Jenis Izin:</label>
+                <select id="jenisIzin" name="jenisIzin" required>
+                    <option value="" disabled selected>Pilih Jenis Izin</option>
+                    <option value="Sakit">Sakit</option>
+                    <option value="Keperluan Keluarga">Keperluan Keluarga</option>
+                    <option value="Dispensasi">Dispensasi Kegiatan</option>
+                    <option value="Pulang Cepat">Pulang Cepat</option>
+                </select>
+
+                <label for="tanggalMulai">Tanggal Mulai:</label>
+                <input type="date" id="tanggalMulai" name="tanggalMulai" required>
+
+                <label for="tanggalSelesai">Tanggal Selesai:</label>
+                <input type="date" id="tanggalSelesai" name="tanggalSelesai" required>
+
+                <label for="alasanIzin">Alasan Detail:</label>
+                <textarea id="alasanIzin" name="alasanIzin" rows="4" required></textarea>
+
+                <label for="dokumenPendukung">Unggah Bukti Pendukung (Opsional, PDF/JPG):</label>
+                <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,.jpg,.jpeg,.png"> 
+                
+                <button type="submit">Ajukan & Simpan ke Database</button>
+            </form>
+        </section>
+
+    </main>
+    
+    <script src="script.js"></script> 
+</body>
+</html>
