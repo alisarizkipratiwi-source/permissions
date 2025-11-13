@@ -6,7 +6,6 @@ const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const loginForm = document.getElementById('loginForm');
 const authMessage = document.getElementById('authMessage');
 const logoutBtn = document.getElementById('logoutBtn');
-
 // --- Logika Login ---
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -16,7 +15,7 @@ if (loginForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         });
@@ -24,8 +23,8 @@ if (loginForm) {
         if (error) {
             console.error(error);
             authMessage.textContent = 'Login Gagal: Periksa email/sandi Anda.';
-        } else {
-            // Jika berhasil, arahkan ke dashboard.html
+        } else if (data.session) { 
+            // Redirect HANYA jika sesi berhasil dibuat
             window.location.href = 'dashboard.html';
         }
     });
@@ -35,10 +34,7 @@ if (loginForm) {
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         const { error } = await supabase.auth.signOut();
-        if (error) {
-            console.error('Logout error:', error);
-        } else {
-            // Arahkan kembali ke halaman login setelah logout
+        if (!error) {
             window.location.href = 'login.html'; 
         }
     });
