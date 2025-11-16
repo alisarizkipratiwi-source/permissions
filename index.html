@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Izin Siswa - SMAN 1 GRATI</title>
-    <link rel="stylesheet" href="style.css"> 
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
-    
+
     <header class="homepage-header">
         <h1>Sistem Izin Siswa SMAN 1 GRATI</h1>
         <p>Gunakan formulir ini untuk mengajukan izin ketidakhadiran (Sakit, Keluarga, Dispensasi).</p>
+
         <a href="#submission-form" class="cta-button">Ajukan Izin Sekarang</a>
-        <a href="login.html" class="cta-button">Login Guru/Admin</a> 
+        <a href="login.html" class="cta-button">Login Guru/Admin</a>
     </header>
 
     <main class="container">
-        
         <section id="submission-form">
             <h2>Formulir Pengajuan Izin</h2>
-            
+
             <p id="formMessage" class="alert-success" style="display:none;"></p>
 
-            <form id="izinForm"> 
-                
+            <form id="izinForm">
+
                 <label for="namaSiswa">Nama Siswa Lengkap:</label>
                 <input type="text" id="namaSiswa" name="namaSiswa" required>
 
@@ -50,14 +54,16 @@
                 <textarea id="alasanIzin" name="alasanIzin" rows="4" required></textarea>
 
                 <label for="dokumenPendukung">Unggah Bukti Pendukung (Opsional, PDF/JPG):</label>
-                <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,.jpg,.jpeg,.png"> 
-                
+                <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,.jpg,.jpeg,.png">
+
                 <button type="submit">Ajukan & Simpan ke Database</button>
             </form>
         </section>
-
     </main>
-    
-    <script src="script.js"></script> 
+
+    <!-- Script JS harus paling bawah -->
+    <script src="script.js"></script>
+
 </body>
 </html>
+
