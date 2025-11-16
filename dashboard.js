@@ -1,12 +1,15 @@
-// dashboard.js
-const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co'; 
+// ==== KONFIGURASI SUPABASE ====
+const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
 
-// create supabase client (WAJIB DIBENERIN)
-const { createClient } = supabase;
-const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// === CREATE CLIENT (cara yang benar Supabase v2) ===
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// --- AUTH CHECK ---
+
+
+// =======================================================
+//                 AUTH CHECK (Login Validation)
+// =======================================================
 function checkAuth() {
     client.auth.onAuthStateChange((event, session) => {
         if (!session) {
@@ -19,7 +22,11 @@ function checkAuth() {
     });
 }
 
-// --- LOAD DATA ---
+
+
+// =======================================================
+//                   LOAD IZIN DATA
+// =======================================================
 async function loadIzinData() {
     const tableBody = document.querySelector('#izinTable tbody');
     if (!tableBody) return;
@@ -46,7 +53,7 @@ async function loadIzinData() {
         row.insertCell().textContent = izin.type;
         row.insertCell().textContent = `${izin.start_date} s/d ${izin.end_date}`;
 
-        // bukti
+        // === BUKTI ===
         const buktiCell = row.insertCell();
         if (izin.proof_url) {
             const link = document.createElement('a');
@@ -58,10 +65,10 @@ async function loadIzinData() {
             buktiCell.textContent = 'N/A';
         }
 
-        // status
+        // === STATUS ===
         row.insertCell().textContent = izin.status;
 
-        // action
+        // === ACTION ===
         const actionCell = row.insertCell();
         if (izin.status === 'Menunggu Persetujuan') {
             actionCell.innerHTML = `
@@ -76,7 +83,11 @@ async function loadIzinData() {
     attachUpdateListeners();
 }
 
-// --- UPDATE STATUS ---
+
+
+// =======================================================
+//                  UPDATE STATUS IZIN
+// =======================================================
 function attachUpdateListeners() {
     document.querySelectorAll('.status-btn').forEach(button => {
         button.addEventListener('click', async (e) => {
@@ -97,10 +108,15 @@ function attachUpdateListeners() {
     });
 }
 
-// --- START ---
+
+
+// =======================================================
+//                     INIT PAGE
+// =======================================================
 if (
     document.body.classList.contains('dashboard-page') ||
     window.location.pathname.includes('dashboard.html')
 ) {
     checkAuth();
 }
+
