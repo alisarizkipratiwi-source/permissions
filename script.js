@@ -1,14 +1,6 @@
-// HARUS ADA di HTML kamu:
-// <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-// =====================================================
-// SETUP SUPABASE CLIENT (FIXED)
-// =====================================================
 const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co';
-const SUPABASE_ANON_KEY = 'your_anon_key_here';
-
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-// =====================================================
 
 const izinForm = document.getElementById('izinForm');
 
@@ -22,12 +14,11 @@ if (izinForm) {
 
         const isFileUploaded = buktiFile && buktiFile.size > 0;
 
-        // Upload file
         if (isFileUploaded) {
             const filePath = `bukti/${Date.now()}-${buktiFile.name.replace(/\s/g, '_')}`;
 
             const { error: uploadError } = await supabaseClient.storage
-                .from('proof-files')
+                .from('izin-bukti')
                 .upload(filePath, buktiFile);
 
             if (uploadError) {
@@ -38,7 +29,7 @@ if (izinForm) {
 
             const { data: publicUrlData } = supabaseClient
                 .storage
-                .from('proof-files')
+                .from('izin-bukti')
                 .getPublicUrl(filePath);
 
             proofUrl = publicUrlData.publicUrl;
@@ -68,3 +59,4 @@ if (izinForm) {
         }
     });
 }
+
