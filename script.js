@@ -1,19 +1,32 @@
+// ==========================================
+// KONFIGURASI SUPABASE
+// ==========================================
 const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
+const SUPABASE_ANON_KEY =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
+
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ==========================================
+// FORM IZIN
+// ==========================================
 const izinForm = document.getElementById('izinForm');
 
 if (izinForm) {
     izinForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // Ambil data form
         const formData = new FormData(izinForm);
         const buktiFile = formData.get('dokumenPendukung');
         let proofUrl = null;
 
+        // Cek apakah ada file
         const isFileUploaded = buktiFile && buktiFile.size > 0;
 
+        // ==========================================
+        // UPLOAD FILE KE SUPABASE STORAGE
+        // ==========================================
         if (isFileUploaded) {
             const filePath = `bukti/${Date.now()}-${buktiFile.name.replace(/\s/g, '_')}`;
 
@@ -27,6 +40,7 @@ if (izinForm) {
                 return;
             }
 
+            // Ambil public URL
             const { data: publicUrlData } = supabaseClient
                 .storage
                 .from('izin-bukti')
@@ -35,6 +49,9 @@ if (izinForm) {
             proofUrl = publicUrlData.publicUrl;
         }
 
+        // ==========================================
+        // INSERT KE DATABASE permissions
+        // ==========================================
         const dataToInsert = {
             student_name: formData.get('namaSiswa'),
             student_class: formData.get('kelasSiswa'),
@@ -43,7 +60,7 @@ if (izinForm) {
             end_date: formData.get('tanggalSelesai'),
             reason: formData.get('alasanIzin'),
             proof_url: proofUrl,
-            status: 'Menunggu Persetujuan'
+            status: 'Menunggu Persetujuan',
         };
 
         const { error: insertError } = await supabaseClient
@@ -59,4 +76,3 @@ if (izinForm) {
         }
     });
 }
-
