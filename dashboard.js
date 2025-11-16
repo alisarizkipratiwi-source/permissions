@@ -1,8 +1,9 @@
 // ==== KONFIGURASI SUPABASE ====
 const SUPABASE_URL = 'https://ivbqgyhwddimmpuccqrz.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
+const SUPABASE_ANON_KEY =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2YnFneWh3ZGRpbW1wdWNjcXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzM4MDYsImV4cCI6MjA3ODYwOTgwNn0.NnKktKXQlRspI3IcAyID-CY-m0zf2omjI8_ihqThtpo';
 
-// === CREATE CLIENT (cara yang benar Supabase v2) ===
+// === CREATE CLIENT (Supabase v2) ===
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 
@@ -38,7 +39,7 @@ async function loadIzinData() {
 
     if (error) {
         tableBody.innerHTML =
-            `<tr><td colspan="8">Gagal memuat data. Error: ${error.message}</td></tr>`;
+            `<tr><td colspan="9">Gagal memuat data. Error: ${error.message}</td></tr>`;
         return;
     }
 
@@ -70,25 +71,35 @@ async function loadIzinData() {
 
         // === ACTION ===
         const actionCell = row.insertCell();
+
+        // tombol approve / reject
         if (izin.status === 'Menunggu Persetujuan') {
             actionCell.innerHTML = `
                 <button class="status-btn approved" data-id="${izin.id}" data-status="Disetujui">Setujui</button>
                 <button class="status-btn rejected" data-id="${izin.id}" data-status="Ditolak">Tolak</button>
             `;
-        } else {
-            actionCell.textContent = izin.status;
         }
+
+        // tombol hapus (SELALU ADA)
+        const btnDelete = document.createElement("button");
+        btnDelete.textContent = "Hapus";
+        btnDelete.classList.add("delete-btn");
+        btnDelete.dataset.id = izin.id;
+
+        actionCell.appendChild(btnDelete);
     });
 
-    attachUpdateListeners();
+    attachListeners();
 }
 
 
 
 // =======================================================
-//                  UPDATE STATUS IZIN
+//          ATTACH LISTENER (UPDATE + DELETE)
 // =======================================================
-function attachUpdateListeners() {
+function attachListeners() {
+
+    // === LISTENER UPDATE STATUS ===
     document.querySelectorAll('.status-btn').forEach(button => {
         button.addEventListener('click', async (e) => {
             const id = e.target.dataset.id;
@@ -101,6 +112,27 @@ function attachUpdateListeners() {
 
             if (error) {
                 alert(`Gagal update: ${error.message}`);
+            } else {
+                loadIzinData();
+            }
+        });
+    });
+
+    // === LISTENER DELETE IZIN ===
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            const id = e.target.dataset.id;
+
+            const konfirmasi = confirm("Apakah kamu yakin ingin menghapus izin ini?");
+            if (!konfirmasi) return;
+
+            const { error } = await client
+                .from('permissions')
+                .delete()
+                .eq('id', id);
+
+            if (error) {
+                alert(`Gagal menghapus: ${error.message}`);
             } else {
                 loadIzinData();
             }
@@ -119,4 +151,3 @@ if (
 ) {
     checkAuth();
 }
-
