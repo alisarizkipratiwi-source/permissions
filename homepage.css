@@ -1,0 +1,108 @@
+import { Button } from "./ui/button";
+import { ArrowRight, Mail, Shield, Lock, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+export function CTACombined() {
+  const router = useRouter();
+
+  return (
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
+            <Shield className="w-5 h-5 text-emerald-400" />
+            <span className="text-white/90">Sistem Perizinan Sekolah</span>
+          </div>
+
+          <h2 className="text-white mb-6">
+            Pilih Portal Sesuai Pengguna
+          </h2>
+
+          <p className="text-white/80 max-w-2xl mx-auto text-lg">
+            Siswa dapat mengajukan izin tanpa login. Guru dan Admin
+            memiliki akses verifikasi melalui login.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+
+          {/* Siswa - tanpa login */}
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mb-4">
+              <User className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-white mb-2">Akses Siswa</h3>
+            <p className="text-white/70 mb-6 text-sm">
+              Ajukan izin dan unggah bukti tanpa perlu login.
+            </p>
+            <Button
+              className="w-full gap-2 bg-white text-slate-900 hover:bg-gray-100"
+              onClick={() => router.push("/siswa/izin")}
+            >
+              Ajukan Izin
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </div>
+
+          {/* Guru */}
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4">
+              <Lock className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-white mb-2">Portal Guru</h3>
+            <p className="text-white/70 mb-6 text-sm">
+              Verifikasi izin siswa pada kelas Anda.
+            </p>
+            <Button
+              className="w-full gap-2 bg-white text-slate-900 hover:bg-gray-100"
+              onClick={() => router.push("/guru/login")}
+            >
+              Login Guru
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </div>
+
+          {/* Admin */}
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-4">
+              <Shield className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-white mb-2">Portal Admin</h3>
+            <p className="text-white/70 mb-6 text-sm">
+              Kelola database, pantau aktivitas, dan kontrol penuh sistem.
+            </p>
+            <Button
+              className="w-full gap-2 bg-white text-slate-900 hover:bg-gray-100"
+              onClick={() => router.push("/admin/login")}
+            >
+              Login Admin
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </div>
+
+        </div>
+
+        {/* Bantuan */}
+        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
+          <p className="text-white/70 text-sm mb-2">
+            Jika butuh bantuan akun guru atau admin:
+          </p>
+          <Button variant="link" className="text-white hover:text-white/80 gap-2">
+            <Mail className="w-4 h-4" />
+            Hubungi Administrator
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
