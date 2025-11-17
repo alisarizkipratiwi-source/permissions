@@ -40,3 +40,28 @@
                     <option value="" disabled selected>Pilih Jenis Izin</option>
                     <option value="Sakit">Sakit</option>
                     <option value="Keperluan Keluarga">Keperluan Keluarga</option>
+                    <option value="Dispensasi">Dispensasi Kegiatan</option>
+                    <option value="Pulang Cepat">Pulang Cepat</option>
+                </select>
+
+                <label for="tanggalMulai">Tanggal Mulai:</label>
+                <input type="date" id="tanggalMulai" name="tanggalMulai" required>
+
+                <label for="tanggalSelesai">Tanggal Selesai:</label>
+                <input type="date" id="tanggalSelesai" name="tanggalSelesai" required>
+
+                <label for="alasanIzin">Alasan Detail:</label>
+                <textarea id="alasanIzin" name="alasanIzin" rows="4" required></textarea>
+
+                <label for="dokumenPendukung">Unggah Bukti Pendukung (Opsional, PDF/JPG):</label>
+                <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,.jpg,.jpeg,.png">
+
+                <button type="submit">Ajukan & Simpan ke Database</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
