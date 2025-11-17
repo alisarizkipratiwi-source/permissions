@@ -13,35 +13,14 @@
 </head>
 <body>
 
-    <!-- ==============================
-         HEADER HOMEPAGE (PORTAL SISWA & GURU)
-         ============================== -->
     <header class="homepage-header">
         <h1>Sistem Izin Siswa SMAN 1 GRATI</h1>
-        <p>Gunakan halaman ini untuk mengajukan izin siswa atau mengakses dashboard guru/admin.</p>
+        <p>Gunakan formulir ini untuk mengajukan izin ketidakhadiran (Sakit, Keluarga, Dispensasi).</p>
 
-        <!-- ==============================
-             CTA PORTAL SISWA
-             ============================== -->
-        <a href="#submission-form" class="cta-button">Form Pengajuan Izin Siswa</a>
-
-        <!-- ==============================
-             CTA PORTAL GURU (DASHBOARD)
-             Catatan: otomatis menuju dashboard guru
-             ============================== -->
-        <a href="dashboard.html" class="cta-button">Dashboard Guru</a>
-
-        <!-- ==============================
-             CTA LOGIN GURU (opsional)
-             jika kamu masih butuh login.html
-             ============================== -->
+        <a href="#submission-form" class="cta-button">Ajukan Izin Sekarang</a>
         <a href="login.html" class="cta-button">Login Guru/Admin</a>
     </header>
 
-
-    <!-- ==============================
-         FORM IZIN SISWA (ASLI PUNYAMU)
-         ============================== -->
     <main class="container">
         <section id="submission-form">
             <h2>Formulir Pengajuan Izin</h2>
@@ -61,31 +40,3 @@
                     <option value="" disabled selected>Pilih Jenis Izin</option>
                     <option value="Sakit">Sakit</option>
                     <option value="Keperluan Keluarga">Keperluan Keluarga</option>
-                    <option value="Dispensasi">Dispensasi Kegiatan</option>
-                    <option value="Pulang Cepat">Pulang Cepat</option>
-                </select>
-
-                <label for="tanggalMulai">Tanggal Mulai:</label>
-                <input type="date" id="tanggalMulai" name="tanggalMulai" required>
-
-                <label for="tanggalSelesai">Tanggal Selesai:</label>
-                <input type="date" id="tanggalSelesai" name="tanggalSelesai" required>
-
-                <label for="alasanIzin">Alasan Detail:</label>
-                <textarea id="alasanIzin" name="alasanIzin" rows="4" required></textarea>
-
-                <label for="dokumenPendukung">Unggah Bukti Pendukung (Opsional, PDF/JPG):</label>
-                <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,.jpg,.jpeg,.png">
-
-                <button type="submit">Ajukan & Simpan ke Database</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- ==============================
-         JAVASCRIPT (ORIGINAL)
-         ============================== -->
-    <script src="script.js"></script>
-
-</body>
-</html>
