@@ -1,73 +1,158 @@
-/* --- 1. BASE STYLING & FONT --- */
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
-:root {
-    --primary-color: #4285F4; /* Biru Google */
-    --secondary-color: #34A853; /* Hijau */
-    --accent-color: #FBBC05; /* Kuning */
-    --background-light: #f8f9fa;
-    --text-dark: #202124;
-    --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--background-light);
-    color: var(--text-dark);
+/* RESET */
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-.container {
-    max-width: 960px;
-    margin: 40px auto;
-    padding: 30px;
+/* WARNA DISAMAKAN DENGAN LOGO SMAN 1 GRATI */
+:root {
+    --primary: #1E88E5;       
+    --primary-dark: #0D47A1;  
+    --soft-bg: #F3F6FA;
+    --text-dark: #1f2937;
+    --card-bg: white;
+    --shadow: 0px 4px 25px rgba(0,0,0,0.08);
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
 }
 
-h2 {
-    color: var(--primary-color);
-    border-bottom: 3px solid #ECEFF1;
-    padding-bottom: 15px;
-    margin-top: 0;
+.logo {
+    height: 55px;
+    width: auto;
+    border-radius: 6px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.school-name {
+    font-size: 22px;
     font-weight: 700;
+    color: var(--primary-dark);
 }
 
+.version {
+    color: gray;
+    font-size: 14px;
+}
 
-/* --- 2. HEADER & NAVIGATION --- */
+/* HERO SECTION */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+    background: var(--soft-bg);
+}
 
-.homepage-header {
-    background-color: var(--primary-color);
+.hero-text {
+    width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #475569;
+}
+
+.hero-buttons {
+    margin-top: 25px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: 0.25s;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--primary);
     color: white;
-    padding: 80px 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.homepage-header h1 {
-    font-size: 3em;
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-dark);
+    border: 2px solid var(--primary-dark);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.hero-image img {
+    width: 400px;
+}
+
+/* PORTAL CARDS */
+.portal-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px;
+}
+
+.portal-card {
+    background: var(--card-bg);
+    width: 290px;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.portal-card h3 {
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
-.cta-button {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 8px;
-    margin: 15px 10px;
-    font-weight: 500;
-    transition: all 0.3s ease-in-out;
+.portal-card p {
+    color: #64748b;
+    margin-bottom: 20px;
 }
 
-.cta-button:hover {
-    background-color: #2D9448;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.card-button {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.card-button:hover {
+    background: var(--primary-dark);
 }
 
 
